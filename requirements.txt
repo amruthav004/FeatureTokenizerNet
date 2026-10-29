@@ -1,0 +1,19 @@
+# Dependencies derived from notebook imports/install commands.
+# Versions were not recorded; this is not an environment lockfile.
+# Google Colab provides google.colab; it is not installed by this file.
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+imbalanced-learn
+torch
+torchmetrics
+shap
+xgboost
+scipy
+ipython
+# Local notebook interface (optional when using Google Colab):
+jupyterlab
+# Optional reader for config.yaml; config.json uses Python standard library:
+PyYAML

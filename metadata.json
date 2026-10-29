@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "title": "Supplementary files for PPD_Final.ipynb",
+  "description": "Documentation and reference settings for tabular classification using FeatureTokenizerNet, SMOTE, SHAP and five-fold baseline comparison.",
+  "source_notebook": {
+    "filename": "PPD_Final.ipynb",
+    "sha256": "0794f8074161938a99620c854fa9f6421944e233ef7f865192ad70dff78020c7",
+    "cell_count": 28,
+    "cell_reference_convention": "one-based notebook cell position",
+    "modified": false
+  },
+  "task": {
+    "target_column": "Suicide attempt",
+    "response_classes": [
+      "No",
+      "Not interested to say",
+      "Yes"
+    ],
+    "interpretation": "Prediction of the recorded response category; a separate postpartum-depression diagnosis label is not defined in the code."
+  },
+  "dataset": {
+    "filename": "postnatal_data.csv",
+    "included": false,
+    "rows_reported": 1503,
+    "columns_reported": 11,
+    "model_features_reported": 9,
+    "provenance": null,
+    "license": null
+  },
+  "author": null,
+  "code_license": null,
+  "software_versions": null,
+  "verification": {
+    "notebook_source_and_saved_outputs_reviewed": true,
+    "training_rerun": false,
+    "reason_not_rerun": "The dataset CSV and original software environment were not supplied.",
+    "exact_reproduction_verified": false
+  },
+  "notebook_sections": [
+    {
+      "cells": "1–15",
+      "purpose": "Dependencies, data inspection, encoding, holdout split, SMOTE and tensor preparation"
+    },
+    {
+      "cells": "16–23",
+      "purpose": "Holdout training, metrics and plots"
+    },
+    {
+      "cells": "24",
+      "purpose": "SHAP analysis and importance CSV"
+    },
+    {
+      "cells": "25–26",
+      "purpose": "Standalone five-fold neural-network evaluation and final-fold learning curves"
+    },
+    {
+      "cells": "27",
+      "purpose": "Five-fold baseline comparison, paired tests and CSV exports"
+    },
+    {
+      "cells": "28",
+      "purpose": "Empty cell"
+    }
+  ],
+  "supplementary_files": {
+    "README.md": "Setup, workflow, outputs, interpretation and reproducibility notes",
+    "config.yaml": "Human-readable reference settings",
+    "config.json": "Equivalent JSON reference settings",
+    "data_dictionary.json": "Columns, response counts, encoding rules and feature order",
+    "metadata.json": "Source provenance and package description",
+    "requirements.txt": "Unpinned dependency list derived from imports and install cells"
+  },
+  "unavailable_artifacts": [
+    "Dataset CSV",
+    "Trained model checkpoint",
+    "Fitted label encoders",
+    "Original dependency lockfile"
+  ],
+  "cell_references": {
+    "dataset_loading": 3,
+    "preprocessing": 9,
+    "holdout_split": 12,
+    "smote": 13,
+    "holdout_model_training": 16,
+    "holdout_metrics": 17,
+    "shap": 24,
+    "standalone_cross_validation": 25,
+    "baseline_comparison": 27
+  }
+}

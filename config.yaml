@@ -1,0 +1,174 @@
+# Reference configuration; not automatically consumed by the original notebook.
+configuration_version: '1.0'
+usage: Reference settings transcribed from PPD_Final.ipynb. The original notebook
+  does not load this file automatically.
+data:
+  csv_path: /content/gdrive/MyDrive/dataset/postnatal_data.csv
+  drive_mount: /content/gdrive
+  target_column: Suicide attempt
+preprocessing:
+  drop_columns_containing_case_insensitive: timestamp
+  missing_values: column mode, including target if missing
+  fit_scope_in_original_notebook: full dataset before splitting
+  ordinal_map:
+    'No': 0
+    Sometimes: 1
+    'Yes': 2
+    'no': 0
+    sometimes: 1
+    'yes': 2
+  ordinal_rule: Use ordinal_map only when all observed strings in a column belong
+    to its keys; otherwise use LabelEncoder for object columns.
+  other_object_columns: LabelEncoder
+  feature_scaling: null
+holdout:
+  test_size: 0.2
+  random_state: 42
+  stratify: target
+  selection_data: test_loader is used for scheduler, early stopping and checkpoint
+    selection
+smote:
+  enabled: true
+  random_state: 42
+  scope: training partition only; separately within each cross-validation fold
+  other_parameters: library defaults; not explicitly specified
+model:
+  class_name: FeatureTokenizerNet
+  input_dim: inferred from training tensor
+  num_classes: inferred from encoded labels
+  emb_dim: 128
+  num_blocks: 5
+  dropout: 0.25
+  residual_expansion_factor: 2
+  activation: GELU
+  normalization: LayerNorm
+  gate: Linear followed by Sigmoid, multiplied elementwise with residual representation
+  head_hidden_dim: 64
+training:
+  device: cuda if available, otherwise cpu
+  feature_dtype: float32
+  target_dtype: int64
+  batch_size: 32
+  train_shuffle: true
+  evaluation_shuffle: false
+  maximum_epochs: 50
+  loss: CrossEntropyLoss
+  optimizer:
+    name: AdamW
+    lr: 0.0008
+    weight_decay: 0.0001
+  scheduler:
+    name: ReduceLROnPlateau
+    mode: max
+    patience: 3
+    factor: 0.5
+    monitor: validation accuracy
+  gradient_clipping_max_norm: 2.0
+  early_stopping:
+    patience: 7
+    monitor: validation accuracy
+    improvement_rule: strictly greater than best value
+    initial_best_accuracy: 0.0
+  holdout_global_seed_set_before_training: false
+  cross_validation_seed: 42
+  cross_validation_seed_libraries:
+  - numpy
+  - torch
+  - torch.cuda
+  cross_validation_seed_reset_each_fold: false
+  deterministic_algorithms_enabled: false
+cross_validation:
+  splitter: StratifiedKFold
+  n_splits: 5
+  shuffle: true
+  random_state: 42
+  model_selection: same validation fold used for epoch selection and reported metrics
+  summary_standard_deviation_ddof: 1
+baselines:
+  LogisticRegression:
+    max_iter: 2000
+    multi_class: auto
+    random_state: 42
+  RandomForestClassifier:
+    n_estimators: 150
+    max_depth: 6
+    min_samples_split: 10
+    min_samples_leaf: 5
+    max_features: sqrt
+    bootstrap: true
+    random_state: 42
+    n_jobs: -1
+  XGBClassifier:
+    n_estimators: 150
+    max_depth: 4
+    learning_rate: 0.05
+    subsample: 0.7
+    colsample_bytree: 0.7
+    gamma: 1.0
+    reg_alpha: 0.5
+    reg_lambda: 1.0
+    objective: multi:softmax
+    num_class: inferred from encoded labels
+    eval_metric: mlogloss
+    random_state: 42
+explainability:
+  explainer: shap.KernelExplainer
+  model_output: softmax probabilities
+  background_source: SMOTE-resampled holdout training data
+  background_size_max: 50
+  test_sample_size_max: 20
+  sampling_seed: 42
+  sampling_replace: false
+  nsamples: 50
+  global_importance: mean absolute SHAP over samples and classes
+evaluation:
+  holdout_metrics:
+  - accuracy
+  - weighted precision
+  - weighted recall
+  - weighted F1
+  - macro F1
+  - micro F1
+  - balanced accuracy
+  - MCC
+  - Cohen kappa
+  - log loss
+  - ROC-AUC OvR
+  - ROC-AUC OvO
+  per_class_metrics:
+  - precision
+  - recall
+  - F1
+  - support
+  - sensitivity
+  - specificity
+  calibration:
+    n_bins: 10
+    strategy: uniform
+  cross_validation_metrics:
+  - Accuracy
+  - Precision_weighted
+  - Recall_weighted
+  - F1_weighted
+  - F1_macro
+  - Balanced_Accuracy
+  - MCC
+  - Cohen_Kappa
+  paired_tests:
+    function: scipy.stats.ttest_rel
+    metrics:
+    - Accuracy
+    - F1_weighted
+    comparison: FeatureTokenizerNet versus each baseline across the same five folds
+    significance_threshold: 0.05
+    multiple_comparison_adjustment: null
+outputs:
+  directory: current working directory
+  holdout_checkpoint: best_feature_tokenizer_model.pth
+  shap_importance: shap_feature_importance_ppd.csv
+  baseline_per_fold: baseline_comparison_per_fold.csv
+  baseline_summary: baseline_comparison_summary.csv
+  paired_test_accuracy: baseline_ttest_accuracy.csv
+  paired_test_f1: baseline_ttest_f1.csv
+  plots: displayed inline; not explicitly saved
+  standalone_cross_validation_tables: displayed inline; not explicitly saved

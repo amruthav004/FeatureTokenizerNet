@@ -1,0 +1,223 @@
+{
+  "source": "Saved outputs in notebook cells 3, 4 and 7; encoding logic in cell 9. Cell references are one-based.",
+  "mapping_provenance": "Ordinal mappings are explicit in source. LabelEncoder mappings are derived from the displayed categories in sorted order; serialized fitted encoders were not supplied.",
+  "row_count_reported": 1503,
+  "raw_column_count_reported": 11,
+  "feature_count_reported": 9,
+  "feature_order": [
+    "Age",
+    "Feeling sad or Tearful",
+    "Irritable towards baby & partner",
+    "Trouble sleeping at night",
+    "Problems concentrating or making decision",
+    "Overeating or loss of appetite",
+    "Feeling anxious",
+    "Feeling of guilt",
+    "Problems of bonding with baby"
+  ],
+  "target_class_order": [
+    "No",
+    "Not interested to say",
+    "Yes"
+  ],
+  "fields": [
+    {
+      "name": "Timestamp",
+      "role": "excluded",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": null,
+      "missing_count_reported": 0,
+      "encoding": null,
+      "encoded_mapping": null,
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Age",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "25-30": 181,
+        "30-35": 338,
+        "35-40": 349,
+        "40-45": 364,
+        "45-50": 271
+      },
+      "missing_count_reported": 0,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "25-30": 0,
+        "30-35": 1,
+        "35-40": 2,
+        "40-45": 3,
+        "45-50": 4
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Feeling sad or Tearful",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 524,
+        "Sometimes": 443,
+        "Yes": 536
+      },
+      "missing_count_reported": 0,
+      "encoding": "ordinal_map",
+      "encoded_mapping": {
+        "No": 0,
+        "Sometimes": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Irritable towards baby & partner",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 499,
+        "Sometimes": 443,
+        "Yes": 555
+      },
+      "missing_count_reported": 6,
+      "encoding": "ordinal_map",
+      "encoded_mapping": {
+        "No": 0,
+        "Sometimes": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": "Yes"
+    },
+    {
+      "name": "Trouble sleeping at night",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 418,
+        "Two or more days a week": 640,
+        "Yes": 445
+      },
+      "missing_count_reported": 0,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "No": 0,
+        "Two or more days a week": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Problems concentrating or making decision",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 583,
+        "Often": 473,
+        "Yes": 435
+      },
+      "missing_count_reported": 12,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "No": 0,
+        "Often": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": "No"
+    },
+    {
+      "name": "Overeating or loss of appetite",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 841,
+        "Not at all": 319,
+        "Yes": 343
+      },
+      "missing_count_reported": 0,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "No": 0,
+        "Not at all": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Feeling anxious",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 523,
+        "Yes": 980
+      },
+      "missing_count_reported": 0,
+      "encoding": "ordinal_map",
+      "encoded_mapping": {
+        "No": 0,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Feeling of guilt",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "Maybe": 528,
+        "No": 624,
+        "Yes": 342
+      },
+      "missing_count_reported": 9,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "Maybe": 0,
+        "No": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": "No"
+    },
+    {
+      "name": "Problems of bonding with baby",
+      "role": "feature",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 557,
+        "Sometimes": 542,
+        "Yes": 404
+      },
+      "missing_count_reported": 0,
+      "encoding": "ordinal_map",
+      "encoded_mapping": {
+        "No": 0,
+        "Sometimes": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    },
+    {
+      "name": "Suicide attempt",
+      "role": "target",
+      "raw_dtype_reported": "object",
+      "category_counts_before_imputation": {
+        "No": 709,
+        "Not interested to say": 335,
+        "Yes": 459
+      },
+      "missing_count_reported": 0,
+      "encoding": "LabelEncoder",
+      "encoded_mapping": {
+        "No": 0,
+        "Not interested to say": 1,
+        "Yes": 2
+      },
+      "mode_imputation_value": null
+    }
+  ],
+  "notes": [
+    "Timestamp has 90 distinct displayed values; the full timestamp frequency table is truncated in the notebook and is not reconstructed here.",
+    "Counts are copied from saved outputs; the underlying CSV was not supplied.",
+    "Not interested to say is a separate response category and must not be interpreted as a clinical severity level.",
+    "Feeling anxious uses codes 0 and 2 under the notebook ordinal map."
+  ]
+}
